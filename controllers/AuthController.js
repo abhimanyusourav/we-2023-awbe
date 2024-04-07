@@ -2,11 +2,11 @@ const bcrypt = require('bcryptjs');
 const Users = require('../models/UserModel');
 const { log } = require('../utility/AppUtils');
 
-const salt = bcrypt.genSaltSync(10);
+const salt = bcrypt.genSaltSync(12);
 const phoneFormat = /^[6-9][0-9]{9}$/;
 const emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const usernameFormat = /^[a-zA-Z0-9]{1,30}$/;
-const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{};:,<.>]).{8,}$/;
+const passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{8,}$/;
 
 const signupUser = async (req, res) => {
     const {name, phone, email, username, password} = req.body;
